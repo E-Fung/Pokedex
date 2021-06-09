@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PokemonPic from "./PokemonPic";
 
+//container for individual pokemons
+
 export default function Pokemon(props) {
   const [pokeState, setPokeState] = useState(null);
-  const [index, setIndex] = useState(props.index);
+  const [index] = useState(props.index);
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
@@ -17,7 +19,7 @@ export default function Pokemon(props) {
   if (!pokeState) {
     return <div>Loading...</div>;
   } else {
-    console.log(index);
+    console.log(pokeState.data);
     return (
       <div>
         <PokemonPic index={index}></PokemonPic>
