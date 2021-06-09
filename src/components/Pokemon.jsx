@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import PokemonPic from "./PokemonPic";
 
-export default function PokemonFC(props) {
+export default function Pokemon(props) {
   const [pokeState, setPokeState] = useState(null);
   const [index, setIndex] = useState(props.index);
 
@@ -16,13 +17,10 @@ export default function PokemonFC(props) {
   if (!pokeState) {
     return <div>Loading...</div>;
   } else {
-    let altIndex = index.toString().padStart(3, "0");
+    console.log(index);
     return (
       <div>
-        <img
-          src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${altIndex}.png`}
-          alt={""}
-        ></img>
+        <PokemonPic index={index}></PokemonPic>
         {pokeState.data.name}
       </div>
     );
