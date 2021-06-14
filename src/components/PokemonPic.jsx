@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function PokemonPic(props) {
-  if (!props.index) {
+export default function PokemonPic({ index }) {
+  if (!index) {
     return <div>loading img...</div>;
   }
-  let altIndex = props.index.toString().padStart(3, "0");
+  let altIndex = index.toString().padStart(3, "0");
   return (
     <div>
       <img

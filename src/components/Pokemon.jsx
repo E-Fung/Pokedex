@@ -5,8 +5,9 @@ import React, { useState } from "react";
 //container for individual pokemons
 
 export default function Pokemon(props) {
-  const [pokemon, setPokemon] = useState(props.pokemon);
+  const [pokemon] = useState(props.pokemon);
   console.log(pokemon);
+
   return <div>{pokemon.data.name}</div>;
 }
 
