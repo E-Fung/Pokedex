@@ -4,12 +4,9 @@ import PokemonList from "./components/PokemonList";
 
 class App extends Component {
   state = {};
+
   render() {
-    return (
-      <div>
-        <PokemonList />
-      </div>
-    );
+    return <PokemonList />;
   }
 }
 

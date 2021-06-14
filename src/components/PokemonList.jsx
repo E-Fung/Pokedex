@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Pokemon from "./Pokemon";
 import axios from "axios";
-import PokemonPic from "./PokemonPic";
 
 export default function PokemonList() {
   const [pokemonList, setPokemonList] = useState(null);
-  const totalPokemon = 898;
+  const totalPokemon = 10;
   let tempArray = new Array(totalPokemon);
   let tempCounter = totalPokemon;
 
@@ -36,13 +35,7 @@ export default function PokemonList() {
   return (
     <div>
       {pokemonList.map((pokemon) => (
-        <div>
-          <Pokemon pokemon={pokemon} key={pokemon.data.id}></Pokemon>
-          <PokemonPic
-            index={pokemon.data.id}
-            key={pokemon.data.id + 1000}
-          ></PokemonPic>
-        </div>
+        <Pokemon pokemon={pokemon} key={pokemon.data.id}></Pokemon>
       ))}
     </div>
   );

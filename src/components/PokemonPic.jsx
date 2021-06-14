@@ -6,11 +6,9 @@ export default function PokemonPic({ index }) {
   }
   let altIndex = index.toString().padStart(3, "0");
   return (
-    <div>
-      <img
-        src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${altIndex}.png`}
-        alt='Pokemon Img'
-      ></img>
-    </div>
+    <img
+      src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${altIndex}.png`}
+      alt='Pokemon Img'
+    ></img>
   );
 }
