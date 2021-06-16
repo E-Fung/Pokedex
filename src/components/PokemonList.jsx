@@ -4,13 +4,31 @@ import axios from "axios";
 
 export default function PokemonList() {
   const [pokemonList, setPokemonList] = useState(null);
-  const [sort, setSort] = useState(null);
+  const [displayList, setDisplayList] = useState(null);
   const totalPokemon = 10;
   let tempArray = new Array(totalPokemon);
   let tempCounter = totalPokemon;
 
   function handleTypeClick(type) {
-    console.log(type);
+    // let tempPoke = pokemonList[0];
+    // console.log(
+    //   tempPoke.data.types.some(
+    //     (currPokemon) => currPokemon.type.name === "water"
+    //   )
+    // );
+    if (type === "reset") {
+      setDisplayList(pokemonList);
+      return;
+    }
+
+    let ppp = pokemonList.filter((tempPoke) =>
+      tempPoke.data.types.some((currPokemon) => currPokemon.type.name === type)
+    );
+    setDisplayList([...ppp]);
+    console.log(ppp);
+    console.log(displayList);
+    console.log("Pokemons of type: ", type, " ");
+    ppp.map((pokemon) => console.log(pokemon.data.name));
     // let tempList = tempArray.filter(type=>type);
   }
 
@@ -24,6 +42,7 @@ export default function PokemonList() {
         tempCounter--;
         if (!tempCounter) {
           setPokemonList(tempArray);
+          setDisplayList(tempArray);
           console.log("Ready");
           // localStorage.setItem("pokemonJSON", JSON.stringify(tempArray)); //stores data in local files
           // console.log(JSON.parse(localStorage.getItem("pokemonJSON")));
