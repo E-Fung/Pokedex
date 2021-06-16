@@ -7,7 +7,8 @@ import PokemonType from "./PokemonTypes";
 export default function Pokemon(props) {
   const [pokemon] = useState(props.pokemon);
   const [pokemonType] = useState(pokemon.data.types);
-  // console.log(pokemonType);
+
+  // console.log(pokemon);
   return (
     <div>
       <p>#{pokemon.data.id} </p>
@@ -18,6 +19,7 @@ export default function Pokemon(props) {
       ></PokemonPic>
       {pokemonType.map((types, index) => (
         <PokemonType
+          onTypeClick={props.onTypeClick}
           types={types.type.name}
           key={2000 + pokemon.data.id * 10 + index}
         ></PokemonType>

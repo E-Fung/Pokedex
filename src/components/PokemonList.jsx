@@ -4,9 +4,15 @@ import axios from "axios";
 
 export default function PokemonList() {
   const [pokemonList, setPokemonList] = useState(null);
+  const [sort, setSort] = useState(null);
   const totalPokemon = 10;
   let tempArray = new Array(totalPokemon);
   let tempCounter = totalPokemon;
+
+  function handleTypeClick(type) {
+    console.log(type);
+    // let tempList = tempArray.filter(type=>type);
+  }
 
   useEffect(() => {
     for (let index = 1; index <= totalPokemon; index++) {
@@ -30,12 +36,17 @@ export default function PokemonList() {
     // console.log("still loading");
     return <div>Still Loading</div>;
   }
+
   // console.log("rendering");
   // console.log(pokemonList);
   return (
     <div>
       {pokemonList.map((pokemon) => (
-        <Pokemon pokemon={pokemon} key={pokemon.data.id}></Pokemon>
+        <Pokemon
+          pokemon={pokemon}
+          key={pokemon.data.id}
+          onTypeClick={handleTypeClick}
+        ></Pokemon>
       ))}
     </div>
   );
