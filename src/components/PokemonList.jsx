@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 export default function PokemonList() {
   const [pokemonList, setPokemonList] = useState(null);
   const [displayList, setDisplayList] = useState(null);
-  const totalPokemon = 10;
+  const totalPokemon = 30;
 
   async function handleTypeClick(type) {
     // let tempPoke = pokemonList[0];
@@ -59,6 +59,7 @@ export default function PokemonList() {
 
   // console.log("rendering");
   // console.log(pokemonList);
+  console.log("Showing ", displayList.length, " pokemons");
   console.log("rendering", displayList);
   return (
     <div>
