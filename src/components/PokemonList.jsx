@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Pokemon from "./Pokemon";
 import axios from "axios";
+import Button from "@material-ui/core/Button";
 
 export default function PokemonList() {
   const [pokemonList, setPokemonList] = useState(null);
@@ -9,7 +10,7 @@ export default function PokemonList() {
   let tempArray = new Array(totalPokemon);
   let tempCounter = totalPokemon;
 
-  function handleTypeClick(type) {
+  async function handleTypeClick(type) {
     // let tempPoke = pokemonList[0];
     // console.log(
     //   tempPoke.data.types.some(
@@ -20,16 +21,17 @@ export default function PokemonList() {
       setDisplayList(pokemonList);
       return;
     }
-
-    let ppp = pokemonList.filter((tempPoke) =>
-      tempPoke.data.types.some((currPokemon) => currPokemon.type.name === type)
+    console.log("about to update display");
+    await setDisplayList(
+      pokemonList.filter((tempPoke) =>
+        tempPoke.data.types.some(
+          (currPokemon) => currPokemon.type.name === type
+        )
+      )
     );
-    setDisplayList([...ppp]);
-    console.log(ppp);
-    console.log(displayList);
-    console.log("Pokemons of type: ", type, " ");
-    ppp.map((pokemon) => console.log(pokemon.data.name));
-    // let tempList = tempArray.filter(type=>type);
+    // console.log("Updated List:", displayList);
+    // console.log("Pokemons of type: ", type, " ");
+    // displayList.map((pokemon) => console.log(pokemon.data.name));
   }
 
   useEffect(() => {
@@ -38,7 +40,7 @@ export default function PokemonList() {
       axios.get(url).then((data) => {
         //think of this code not running in the initial sequence
         tempArray[data.data.id - 1] = data;
-        console.log(data.data.name);
+        // console.log(data.data.name);
         tempCounter--;
         if (!tempCounter) {
           setPokemonList(tempArray);
@@ -51,16 +53,21 @@ export default function PokemonList() {
     }
   }, []);
 
-  if (!pokemonList) {
+  if (!displayList) {
     // console.log("still loading");
     return <div>Still Loading</div>;
   }
 
   // console.log("rendering");
   // console.log(pokemonList);
+  console.log("rendering", displayList);
   return (
     <div>
-      {pokemonList.map((pokemon) => (
+      {/* <Button variant='contained' onClick={() => onTypeClick("reset")}>
+        Reset
+      </Button> */}
+
+      {displayList.map((pokemon) => (
         <Pokemon
           pokemon={pokemon}
           key={pokemon.data.id}
