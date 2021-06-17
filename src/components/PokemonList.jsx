@@ -7,8 +7,6 @@ export default function PokemonList() {
   const [pokemonList, setPokemonList] = useState(null);
   const [displayList, setDisplayList] = useState(null);
   const totalPokemon = 10;
-  let tempArray = new Array(totalPokemon);
-  let tempCounter = totalPokemon;
 
   async function handleTypeClick(type) {
     // let tempPoke = pokemonList[0];
@@ -21,7 +19,6 @@ export default function PokemonList() {
       setDisplayList(pokemonList);
       return;
     }
-    console.log("about to update display");
     await setDisplayList(
       pokemonList.filter((tempPoke) =>
         tempPoke.data.types.some(
@@ -35,6 +32,8 @@ export default function PokemonList() {
   }
 
   useEffect(() => {
+    let tempArray = new Array(totalPokemon);
+    let tempCounter = totalPokemon;
     for (let index = 1; index <= totalPokemon; index++) {
       let url = `https://pokeapi.co/api/v2/pokemon/${index}`;
       axios.get(url).then((data) => {
@@ -45,7 +44,7 @@ export default function PokemonList() {
         if (!tempCounter) {
           setPokemonList(tempArray);
           setDisplayList(tempArray);
-          console.log("Ready");
+          // console.log("Ready");
           // localStorage.setItem("pokemonJSON", JSON.stringify(tempArray)); //stores data in local files
           // console.log(JSON.parse(localStorage.getItem("pokemonJSON")));
         }
@@ -63,9 +62,9 @@ export default function PokemonList() {
   console.log("rendering", displayList);
   return (
     <div>
-      {/* <Button variant='contained' onClick={() => onTypeClick("reset")}>
+      <Button variant='contained' onClick={() => handleTypeClick("reset")}>
         Reset
-      </Button> */}
+      </Button>
 
       {displayList.map((pokemon) => (
         <Pokemon
