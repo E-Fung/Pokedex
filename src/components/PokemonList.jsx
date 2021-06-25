@@ -6,13 +6,13 @@ import Button from "@material-ui/core/Button";
 export default function PokemonList() {
   const [pokemonList, setPokemonList] = useState(null);
   const [displayList, setDisplayList] = useState(null);
-  const totalPokemon = 30;
+  const totalPokemon = 10;
 
   async function handleTypeClick(type) {
     // let tempPoke = pokemonList[0];
     // console.log(
     //   tempPoke.data.types.some(
-    //     (currPokemon) => currPokemon.type.name === "water"
+    //     (currPokemon) => currPokemon.tget npmlsget npmype.name === "water"
     //   )
     // );
     if (type === "reset") {
@@ -34,8 +34,8 @@ export default function PokemonList() {
   useEffect(() => {
     let tempArray = new Array(totalPokemon);
     let tempCounter = totalPokemon;
-    for (let index = 1; index <= totalPokemon; index++) {
-      let url = `https://pokeapi.co/api/v2/pokemon/${index}`;
+  for (let index = 1; index <= totalPokemon; index++) {
+    let url = `https://pokeapi.co/api/v2/pokemon/${index}`;
       axios.get(url).then((data) => {
         //think of this code not running in the initial sequence
         tempArray[data.data.id - 1] = data;
