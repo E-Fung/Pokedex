@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import Pokemon from "./Pokemon";
+import React, {useEffect, useState} from "react";
+import Pokemon from "./Pokemon/Pokemon";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
 
 export default function PokemonList() {
   const [pokemonList, setPokemonList] = useState(null);
   const [displayList, setDisplayList] = useState(null);
-  const totalPokemon = 10;
+  const totalPokemon = 100;
 
   async function handleTypeClick(type) {
     // let tempPoke = pokemonList[0];
@@ -34,8 +34,8 @@ export default function PokemonList() {
   useEffect(() => {
     let tempArray = new Array(totalPokemon);
     let tempCounter = totalPokemon;
-  for (let index = 1; index <= totalPokemon; index++) {
-    let url = `https://pokeapi.co/api/v2/pokemon/${index}`;
+    for (let index = 1; index <= totalPokemon; index++) {
+      let url = `https://pokeapi.co/api/v2/pokemon/${index}`;
       axios.get(url).then((data) => {
         //think of this code not running in the initial sequence
         tempArray[data.data.id - 1] = data;

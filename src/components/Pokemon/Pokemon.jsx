@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from "react";
-import PokemonPic from "./PokemonPic";
-import PokemonType from "./PokemonTypes";
+import React, {useEffect, useState} from "react";
+import PokemonPic from "./PokeData/PokemonPic";
+import PokemonType from "./PokeData/PokemonTypes";
 import axios from "axios";
-
 
 //container for individual pokemons
 
 export default function Pokemon(props) {
   const [pokemon] = useState(props.pokemon);
   const [pokemonType] = useState(pokemon.data.types);
-  const [species,setSpecies] = useState(null)
+  const [species, setSpecies] = useState(null);
 
-
-  useEffect(() => {  
+  useEffect(() => {
     let url = `https://pokeapi.co/api/v2/pokemon-species/${pokemon.data.id}/`;
     axios.get(url).then((data) => {
       setSpecies(data);
@@ -21,7 +19,7 @@ export default function Pokemon(props) {
   }, []);
 
   // console.log(pokemon);
-  if(!species){
+  if (!species) {
     return <div></div>;
   }
   return (
@@ -33,10 +31,10 @@ export default function Pokemon(props) {
         index={pokemon.data.id}
         key={pokemon.data.id + 1000}
       ></PokemonPic>
-      {pokemonType.map((types, index) => (
+      {pokemonType.map((type, index) => (
         <PokemonType
           onTypeClick={props.onTypeClick}
-          types={types.type.name}
+          type={type.type.name}
           key={2000 + pokemon.data.id * 10 + index}
         ></PokemonType>
       ))}

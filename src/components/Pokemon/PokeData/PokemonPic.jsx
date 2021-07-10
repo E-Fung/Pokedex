@@ -1,8 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-
-export default function PokemonPic({ index }) {
+export default function PokemonPic({index}) {
   if (!index) {
     return <div>loading img...</div>;
   }
