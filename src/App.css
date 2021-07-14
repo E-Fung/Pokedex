@@ -1,4 +1,19 @@
 .myStyle {
-  background-color: black;
+  background-color: white;
   color: white;
+}
+
+html {
+  height: 100%;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  width: 100%;
+}
+
+.topBar {
+  height: 62px;
+  display: flex;
 }

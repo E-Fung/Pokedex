@@ -1,7 +1,6 @@
 import React from "react";
-import axios from "axios";
 
-export default function PokemonPic({index}) {
+export default function PokemonPic({ index }) {
   if (!index) {
     return <div>loading img...</div>;
   }
@@ -10,7 +9,7 @@ export default function PokemonPic({index}) {
   return (
     <img
       src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${altIndex}.png`}
-      alt='Pokemon Img'
+      alt="Pokemon Img"
     ></img>
   );
 }

@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import PokemonPic from "./PokeData/PokemonPic";
 import PokemonType from "./PokeData/PokemonTypes";
 import axios from "axios";
+import Grid from "@material-ui/core/Grid";
 
 //container for individual pokemons
 
@@ -16,7 +17,7 @@ export default function Pokemon(props) {
       setSpecies(data);
       // console.log(data.data.flavor_text_entries[0].flavor_text);
     });
-  }, []);
+  });
 
   // console.log(pokemon);
   if (!species) {
@@ -24,20 +25,26 @@ export default function Pokemon(props) {
   }
   return (
     <div>
+      {/* <p>{species.data.flavor_text_entries[0].flavor_text}</p> */}
+      <Grid container style={{ backgroundColor: "grey" }}>
+        <PokemonPic
+          index={pokemon.data.id}
+          key={pokemon.data.id + 1000}
+        ></PokemonPic>
+      </Grid>
       <p>#{pokemon.data.id} </p>
       <p>{pokemon.data.name} </p>
-      <p>{species.data.flavor_text_entries[0].flavor_text}</p>
-      <PokemonPic
-        index={pokemon.data.id}
-        key={pokemon.data.id + 1000}
-      ></PokemonPic>
-      {pokemonType.map((type, index) => (
-        <PokemonType
-          onTypeClick={props.onTypeClick}
-          type={type.type.name}
-          key={2000 + pokemon.data.id * 10 + index}
-        ></PokemonType>
-      ))}
+      <Grid container direction="row" justify="space-around">
+        {pokemonType.map((type, index) => (
+          // <Grid item>
+          <PokemonType
+            onTypeClick={props.onTypeClick}
+            type={type.type.name}
+            key={2000 + pokemon.data.id * 10 + index}
+          ></PokemonType>
+          // </Grid>
+        ))}
+      </Grid>
     </div>
   );
 }
