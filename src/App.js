@@ -15,20 +15,21 @@ const RoutesEnum = {
 
 export default function App() {
   return (
-    <Box container className="app" direction="column">
+    <div container className="app" direction="column">
       <main>
         <AppContextProvider>
           <Router>
-            <AppBar>
-              <Toolbar>
-                Ethan is GEHHhhhhhHHHhhHHHHhHHHhhHHhhHHHhHHHHhHHHhhhHHHHHhhHH
-              </Toolbar>
+            <AppBar position="sticky">
+              <Toolbar style={{ minWidth: "100vw" }}></Toolbar>
             </AppBar>
             <Route path={`${RoutesEnum.Home}`} exact component={PokemonList} />
-            <Route path={`${RoutesEnum.Pokemon}`} component={PokemonDetail} />
+            <Route
+              path={`${RoutesEnum.Pokemon}/:pokeName?`}
+              component={PokemonDetail}
+            />
           </Router>
         </AppContextProvider>
       </main>
-    </Box>
+    </div>
   );
 }

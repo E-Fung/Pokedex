@@ -6,7 +6,6 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/styles";
 import { useHistory } from "react-router";
-import { useAppContext } from "../AppContext";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -22,7 +21,6 @@ export default function PokemonList() {
   const [displayList, setDisplayList] = useState(null);
   const totalPokemon = 20;
   const history = useHistory();
-  const { handlePokeIndex } = useAppContext();
 
   useEffect(() => {
     AOS.init({ once: true });
@@ -31,7 +29,7 @@ export default function PokemonList() {
   const classes = useStyles();
 
   async function handlePicClick(index) {
-    console.log(displayList[index - 1]);
+    console.log(index);
     history.push({
       pathname: "/pokemon",
       state: { name: displayList[index - 1].data },

@@ -8,7 +8,7 @@ export default function PokemonDetail({ name }) {
   // const { pokeIndex } = useAppContext();
   // useEffect(() => console.log(pokeIndex));
   const location = useLocation();
-  useEffect(() => console.log(location.state.name), []);
+  useEffect(() => console.log(location.state.name.name), []);
   return (
     <div>
       <PokemonPic index={2}></PokemonPic>
