@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
-import {createMuiTheme, makeStyles, ThemeProvider} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   fire: {
@@ -78,19 +78,18 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function PokemonTypes(props) {
-  const [type, setType] = useState(props.type);
+  const [type] = useState(props.type);
+
   //useState returns an array
   //type is first element in the array (index[0])
   //setType is second(last) element in the array
+
   const classes = useStyles();
-  const getTypeColor = (type) => {
-    return classes[props.type];
-  };
 
   return (
     <Button
-      variant='contained'
-      className={getTypeColor(type)}
+      variant="contained"
+      className={classes[type]}
       onClick={() => props.onTypeClick(type)}
     >
       {type}
