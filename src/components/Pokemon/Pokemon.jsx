@@ -3,6 +3,8 @@ import PokemonPic from "./PokeData/PokemonPic";
 import PokemonType from "./PokeData/PokemonTypes";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
+import "./Pokemon.css";
+import { Box } from "@material-ui/core";
 
 //container for individual pokemons
 
@@ -24,16 +26,19 @@ export default function Pokemon(props) {
     return <div></div>;
   }
   return (
-    <div>
+    <Box container style={{ backgroundColor: "white" }} width={200}>
       {/* <p>{species.data.flavor_text_entries[0].flavor_text}</p> */}
-      <Grid container style={{ backgroundColor: "grey" }}>
+      <Grid container justify="center" style={{ backgroundColor: "grey" }}>
         <PokemonPic
+          onPicClick={props.onPicClick}
           index={pokemon.data.id}
           key={pokemon.data.id + 1000}
         ></PokemonPic>
       </Grid>
-      <p>#{pokemon.data.id} </p>
-      <p>{pokemon.data.name} </p>
+      <p style={{ textAlign: "center" }}>
+        #{pokemon.data.id} {pokemon.data.name}
+      </p>
+      {/* <p>{pokemon.data.name} </p> */}
       <Grid container direction="row" justify="space-around">
         {pokemonType.map((type, index) => (
           // <Grid item>
@@ -45,7 +50,7 @@ export default function Pokemon(props) {
           // </Grid>
         ))}
       </Grid>
-    </div>
+    </Box>
   );
 }
 

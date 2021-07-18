@@ -1,21 +1,42 @@
 import React, { useEffect, useState } from "react";
 import Pokemon from "./Pokemon/Pokemon";
 import axios from "axios";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
+import { makeStyles } from "@material-ui/styles";
+import { useHistory } from "react-router";
+import { useAppContext } from "../AppContext";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+const useStyles = makeStyles({
+  root: {
+    backgroundColor: "navy",
+  },
+});
+
 export default function PokemonList() {
   const [pokemonList, setPokemonList] = useState(null);
   const [displayList, setDisplayList] = useState(null);
-  const totalPokemon = 10;
+  const totalPokemon = 20;
+  const history = useHistory();
+  const { handlePokeIndex } = useAppContext();
 
   useEffect(() => {
     AOS.init({ once: true });
   }, []);
+
+  const classes = useStyles();
+
+  async function handlePicClick(index) {
+    console.log(displayList[index - 1]);
+    history.push({
+      pathname: "/pokemon",
+      state: { name: displayList[index - 1].data },
+    });
+  }
 
   async function handleTypeClick(type) {
     // let tempPoke = pokemonList[0];
@@ -68,41 +89,27 @@ export default function PokemonList() {
 
   // console.log("rendering");
   // console.log(pokemonList);
-  console.log("Showing ", displayList.length, " pokemons");
-  console.log("rendering", displayList);
+  // console.log("Showing ", displayList.length, " pokemons");
+  // console.log("rendering", displayList);
   return (
-    <Box display="flex" direction="row" spacing={3} width="100%">
+    <Box container display="flex">
       {/* <Button variant="contained" onClick={() => handleTypeClick("reset")}>
         Reset
       </Button> */}
-      <Grid xl={1}></Grid>
-      <Grid
-        container
-        display="flex"
-        spacing={4}
-        direction="row"
-        justify="flex-start"
-        align="flex-end"
-        style={{ backgroundColor: "white", height: "100%", width: "100%" }}
-        xl={10}
-      >
+      <Grid classes={{ root: classes.root }} xl={3}></Grid>
+      <Grid container xl={6}>
         {displayList.map((pokemon) => (
-          <Grid
-            container
-            style={{ backgroundColor: "black" }}
-            data-aos="flip-left"
-            direction="row"
-            xs={3}
-          >
+          <Grid container data-aos="flip-left" justify="center" xs={3}>
             <Pokemon
               pokemon={pokemon}
               key={pokemon.data.id}
               onTypeClick={handleTypeClick}
+              onPicClick={handlePicClick}
             ></Pokemon>
           </Grid>
         ))}
       </Grid>
-      <Grid xl={1}></Grid>
+      <Grid xl={3} classes={{ root: classes.root }}></Grid>
     </Box>
   );
 }
