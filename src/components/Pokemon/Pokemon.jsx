@@ -9,25 +9,24 @@ import { Box } from "@material-ui/core";
 //container for individual pokemons
 
 export default function Pokemon(props) {
-  const [pokemon] = useState(props.pokemon);
-  const [pokemonType] = useState(pokemon.data.types);
-  const [species, setSpecies] = useState(null);
+  const [url] = useState(props.url);
+  const [pokemon, setPokemon] = useState(null);
+  const [pokemonType, setPokemonType] = useState(null);
 
   useEffect(() => {
-    let url = `https://pokeapi.co/api/v2/pokemon-species/${pokemon.data.id}/`;
     axios.get(url).then((data) => {
-      setSpecies(data);
-      // console.log(data.data.flavor_text_entries[0].flavor_text);
+      setPokemon(data);
+      setPokemonType(data.data.types);
     });
-  });
+  }, [url]);
 
   // console.log(pokemon);
-  if (!species) {
+  if (!pokemon) {
     return <div></div>;
   }
+
   return (
-    <Box container style={{ backgroundColor: "white" }} width={200}>
-      {/* <p>{species.data.flavor_text_entries[0].flavor_text}</p> */}
+    <Box container style={{ backgroundColor: "white" }}>
       <Grid container justify="center" style={{ backgroundColor: "grey" }}>
         <PokemonPic
           onPicClick={props.onPicClick}
@@ -38,18 +37,17 @@ export default function Pokemon(props) {
       <p style={{ textAlign: "center" }}>
         #{pokemon.data.id} {pokemon.data.name}
       </p>
-      {/* <p>{pokemon.data.name} </p> */}
-      <Grid container direction="row" justify="space-around">
-        {pokemonType.map((type, index) => (
-          // <Grid item>
-          <PokemonType
-            onTypeClick={props.onTypeClick}
-            type={type.type.name}
-            key={2000 + pokemon.data.id * 10 + index}
-          ></PokemonType>
-          // </Grid>
-        ))}
-      </Grid>
+      {pokemonType && (
+        <Grid container direction="row" justify="space-around">
+          {pokemonType.map((type, index) => (
+            <PokemonType
+              onTypeClick={props.onTypeClick}
+              type={type.type.name}
+              key={2000 + pokemon.data.id * 10 + index}
+            ></PokemonType>
+          ))}
+        </Grid>
+      )}
     </Box>
   );
 }

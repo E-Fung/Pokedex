@@ -9,7 +9,7 @@ export default function AppContextProvider({ children }) {
 
   const handlePokeIndex = useCallback((index) => {
     setPokeIndex(index);
-  });
+  }, []);
   return (
     <AppContext.Provider value={{ pokeIndex, handlePokeIndex }}>
       {children}
