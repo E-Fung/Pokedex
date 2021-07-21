@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import { Grid, makeStyles } from "@material-ui/core";
 
+//takes in an array of types
+
 const useStyles = makeStyles(() => ({
   fire: {
     backgroundColor: "#F08030",
