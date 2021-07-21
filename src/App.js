@@ -14,7 +14,7 @@ export default function App() {
         </AppBar> */}
         <main>
           <AppBar position="sticky">
-            <Toolbar style={{ minWidth: "100vw", minHeight: "10vh" }}></Toolbar>
+            <Toolbar style={{ minWidth: "100%", minHeight: "10vh" }}></Toolbar>
           </AppBar>
           <Route path={"/"} exact component={PokeList} />
         </main>

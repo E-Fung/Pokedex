@@ -20,7 +20,7 @@ export default function Pokemon(props) {
 
   return (
     <Grid xs={3}>
-      <Box border={1} borderRadius={16}>
+      <Box border={1} borderRadius={16} style={{ backgroundColor: "white" }}>
         <Container>
           <PokePic index={pokeData.data.id}></PokePic>
           <Typography variant="h5" align="center">

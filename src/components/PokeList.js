@@ -6,7 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 export default function PokeList() {
-  let totalPokemon = 20;
+  let totalPokemon = 200;
   const [pokemonList, setPokemonList] = useState(null);
   const [typeUrl, setTypeUrl] = useState(null);
   const [url] = useState(
@@ -32,6 +32,9 @@ export default function PokeList() {
       data.data.pokemon
         .slice(0, totalPokemon)
         .map((pokemon) => tempList.push(pokemon.pokemon));
+      tempList = tempList.filter(
+        (pokemon) => pokemon.url.slice(-7).match(/[0-9]/g).join("") < 899
+      );
       setPokemonList(tempList);
     });
   }, [typeUrl, totalPokemon]);
