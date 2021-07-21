@@ -91,7 +91,11 @@ export default function PokeTypes(props) {
     <Grid container justifyContent="space-around">
       {types.map((type) => {
         return (
-          <Button variant="contained" className={classes[type.type.name]}>
+          <Button
+            variant="contained"
+            className={classes[type.type.name]}
+            onTypeClick={props.onTypeClick(type.type.name)}
+          >
             {type.type.name}
           </Button>
         );

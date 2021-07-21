@@ -22,6 +22,32 @@ export default function PokeList() {
     });
   }, [url]);
 
+  // async function handlePicClick(index) {
+  //   console.log(index);
+  //   history.push({
+  //     pathname: "/pokemon",
+  //     state: { name: displayList[index - 1].data },
+  //   });
+  // }
+
+  async function handleTypeClick(type) {
+    // if (type === "reset") {
+    //   setDisplayList(pokemonList);
+    //   return;
+    // }
+    // await setPokemonList(
+    //   pokemonList.filter((tempPoke) =>
+    //     tempPoke.data.types.some(
+    //       (currPokemon) => currPokemon.type.name === type
+    //     )
+    //   )
+    // );
+    axios.get("https://pokeapi.co/api/v2/grass/1").then((data) => {
+      console.log(data);
+    });
+    console.log("Button pressed");
+  }
+
   if (!pokemonList) {
     return <div>loading</div>;
   }
@@ -34,7 +60,7 @@ export default function PokeList() {
         style={{ backgroundColor: "pink", height: "100%" }}
       >
         {pokemonList.map((pokemon) => (
-          <Pokemon url={pokemon.url}></Pokemon>
+          <Pokemon url={pokemon.url} onTypeClick={handleTypeClick}></Pokemon>
         ))}
       </Grid>
     </Container>

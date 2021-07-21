@@ -26,7 +26,10 @@ export default function Pokemon(props) {
           <Typography variant="h5" align="center">
             {pokeData.data.name}{" "}
           </Typography>
-          <PokeTypes types={pokeData.data.types}></PokeTypes>
+          <PokeTypes
+            types={pokeData.data.types}
+            onTypeClick={onTypeClick}
+          ></PokeTypes>
         </Container>
       </Box>
     </Grid>
