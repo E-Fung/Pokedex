@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   fire: {
@@ -77,22 +77,23 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function PokemonTypes(props) {
-  const [type] = useState(props.type);
-
-  //useState returns an array
-  //type is first element in the array (index[0])
-  //setType is second(last) element in the array
-
+export default function PokeTypes(props) {
   const classes = useStyles();
+  const [types] = useState(props.types);
+
+  if (!types) {
+    return <div>loading type</div>;
+  }
 
   return (
-    <Button
-      variant="contained"
-      className={classes[type]}
-      onClick={() => props.onTypeClick(type)}
-    >
-      {type}
-    </Button>
+    <Grid container justifyContent="space-around">
+      {types.map((type) => {
+        return (
+          <Button variant="contained" className={classes[type.type.name]}>
+            {type.type.name}
+          </Button>
+        );
+      })}
+    </Grid>
   );
 }
