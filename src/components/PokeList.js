@@ -30,11 +30,11 @@ export default function PokeList() {
     let tempList = [];
     axios.get(typeUrl).then((data) => {
       data.data.pokemon
-        .slice(0, 21)
+        .slice(0, totalPokemon)
         .map((pokemon) => tempList.push(pokemon.pokemon));
       setPokemonList(tempList);
     });
-  }, [typeUrl]);
+  }, [typeUrl, totalPokemon]);
 
   // async function handlePicClick(index) {
   //   console.log(index);
@@ -52,8 +52,6 @@ export default function PokeList() {
     return <div>loading</div>;
   }
 
-  console.log("list", pokemonList);
-
   return (
     <Container maxWidth="md" fixed>
       <Grid
@@ -64,7 +62,7 @@ export default function PokeList() {
         {pokemonList.map((pokemon) => (
           <Pokemon
             url={pokemon.url}
-            key={pokemon.url.match(/[0-9]/g)}
+            key={pokemon.url.slice(-5).match(/[0-9]/g)}
             onTypeClick={handleTypeClick}
           ></Pokemon>
         ))}
