@@ -28,7 +28,7 @@ export default function Pokemon(props) {
           </Typography>
           <PokeTypes
             types={pokeData.data.types}
-            onTypeClick={onTypeClick}
+            onTypeClick={props.onTypeClick}
           ></PokeTypes>
         </Container>
       </Box>

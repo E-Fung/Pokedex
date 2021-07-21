@@ -94,7 +94,7 @@ export default function PokeTypes(props) {
           <Button
             variant="contained"
             className={classes[type.type.name]}
-            onTypeClick={props.onTypeClick(type.type.name)}
+            onClick={() => props.onTypeClick(type.type.name)}
           >
             {type.type.name}
           </Button>
