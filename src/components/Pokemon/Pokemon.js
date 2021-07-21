@@ -12,6 +12,7 @@ export default function Pokemon(props) {
     axios.get(url).then((data) => {
       setPokeData(data);
     });
+    console.log("url", url);
   }, [url]);
 
   if (!pokeData) {

@@ -9,7 +9,6 @@ export default function PokeList() {
   let totalPokemon = 20;
   const [pokemonList, setPokemonList] = useState(null);
   const [typeUrl, setTypeUrl] = useState(null);
-  const [submitted, setSubmitted] = useState(false);
   const [url] = useState(
     `https://pokeapi.co/api/v2/pokemon?limit=${totalPokemon}&offset=${0}`
   );
@@ -25,10 +24,6 @@ export default function PokeList() {
     });
   }, [url]);
 
-  async function updateList(update) {
-    await setPokemonList(update);
-  }
-
   useEffect(() => {
     console.log("Typeurl");
     if (!typeUrl) return;
@@ -37,19 +32,9 @@ export default function PokeList() {
       data.data.pokemon
         .slice(0, 21)
         .map((pokemon) => tempList.push(pokemon.pokemon));
-      updateList(tempList);
-      setSubmitted(true);
-      console.log(pokemonList);
-      // setPokemonList(tempList);
+      setPokemonList(tempList);
     });
   }, [typeUrl]);
-
-  useEffect(() => {
-    if (submitted) {
-      console.log("submitted", pokemonList);
-      setSubmitted(false);
-    }
-  }, [submitted]);
 
   // async function handlePicClick(index) {
   //   console.log(index);
@@ -77,7 +62,11 @@ export default function PokeList() {
         style={{ backgroundColor: "pink", height: "100%" }}
       >
         {pokemonList.map((pokemon) => (
-          <Pokemon url={pokemon.url} onTypeClick={handleTypeClick}></Pokemon>
+          <Pokemon
+            url={pokemon.url}
+            key={pokemon.url.match(/[0-9]/g)}
+            onTypeClick={handleTypeClick}
+          ></Pokemon>
         ))}
       </Grid>
     </Container>
