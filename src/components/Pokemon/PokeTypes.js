@@ -96,7 +96,7 @@ export default function PokeTypes(props) {
             variant="contained"
             className={classes[type.type.name]}
             onClick={() => props.onTypeClick(type.type.name)}
-            style={{ maxWidth: "0px", maxHeight: "20px" }}
+            style={{ maxWidth: "80px", maxHeight: "20px" }}
           >
             {type.type.name}
           </Button>

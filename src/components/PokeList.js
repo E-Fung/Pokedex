@@ -6,7 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 export default function PokeList() {
-  let totalPokemon = 200;
+  let totalPokemon = 50;
   const [pokemonList, setPokemonList] = useState(null);
   const [typeUrl, setTypeUrl] = useState(null);
   const [url] = useState(
@@ -18,14 +18,12 @@ export default function PokeList() {
   }, []);
 
   useEffect(() => {
-    console.log("url");
     axios.get(url).then((data) => {
       setPokemonList(data.data.results);
     });
   }, [url]);
 
   useEffect(() => {
-    console.log("Typeurl");
     if (!typeUrl) return;
     let tempList = [];
     axios.get(typeUrl).then((data) => {
