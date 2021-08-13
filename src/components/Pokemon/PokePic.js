@@ -13,6 +13,7 @@ export default function PokePic(props) {
         src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${altIndex}.png`}
         alt="Pokemon Img"
         onClick={() => props.onPicClick(props.index)}
+        style={{ height: "100%", width: "100%" }}
       ></img>
     </Grid>
   );

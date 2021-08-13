@@ -6,7 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 export default function PokeList() {
-  let totalPokemon = 50;
+  let totalPokemon = 10;
   const [pokemonList, setPokemonList] = useState(null);
   const [typeUrl, setTypeUrl] = useState(null);
   const [url] = useState(
@@ -54,20 +54,14 @@ export default function PokeList() {
   }
 
   return (
-    <Container maxWidth="md" fixed>
-      <Grid
-        container
-        direction="row"
-        style={{ backgroundColor: "pink", height: "100%" }}
-      >
-        {pokemonList.map((pokemon) => (
-          <Pokemon
-            url={pokemon.url}
-            key={pokemon.url.slice(-5).match(/[0-9]/g)}
-            onTypeClick={handleTypeClick}
-          ></Pokemon>
-        ))}
-      </Grid>
-    </Container>
+    <Grid container direction="row" style={{ height: "100%" }}>
+      {pokemonList.map((pokemon) => (
+        <Pokemon
+          url={pokemon.url}
+          key={pokemon.url.slice(-5).match(/[0-9]/g)}
+          onTypeClick={handleTypeClick}
+        ></Pokemon>
+      ))}
+    </Grid>
   );
 }

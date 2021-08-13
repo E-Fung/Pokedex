@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import PokePic from "./Pokemon/PokePic";
-import { Typography } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 import { capFirstLetter } from "../utility/utility";
 import PokeStats from "./PokeDetails/PokeStats";
 import PokeEvol from "./PokeDetails/PokeEvol";
@@ -24,17 +24,20 @@ export default function PokeDets() {
   }
 
   let pokeName = capFirstLetter(pokeData.name);
-  console.log(pokeData);
 
   return (
-    <>
-      <PokePic index={pokeData.id} />
+    <Grid container justifyContent="center">
+      <Grid container justifyContent="center">
+        <Grid item xs={6}>
+          <PokePic index={pokeData.id} />
+        </Grid>
+      </Grid>
       <Typography variant="h5" align="center">
         {pokeName}
       </Typography>
       <PokeStats pokeStats={pokeData.stats} />
-      <PokeMoves pokeMoves={pokeData.moves} />
-      <PokeEvol url={pokeData.species.url} z />
-    </>
+      {/* <PokeMoves pokeMoves={pokeData.moves} /> */}
+      <PokeEvol url={pokeData.species.url} />
+    </Grid>
   );
 }
