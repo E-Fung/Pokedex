@@ -6,7 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 export default function PokeList() {
-  let totalPokemon = 10;
+  let totalPokemon = 100;
   const [pokemonList, setPokemonList] = useState(null);
   const [typeUrl, setTypeUrl] = useState(null);
   const [url] = useState(
