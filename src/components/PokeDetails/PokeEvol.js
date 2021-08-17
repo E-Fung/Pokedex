@@ -4,9 +4,10 @@ import axios from "axios";
 import PokePic from "../Pokemon/PokePic";
 import { useHistory } from "react-router";
 import { Grid } from "@material-ui/core";
+import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 
 export default function PokeEvol(props) {
-  const history = useHistory;
+  const history = useHistory();
   const [evolUrl, setEvolUrl] = useState(null);
   const [evolData, setEvolData] = useState(null);
   const [evolChain, setEvolChain] = useState(null);
@@ -47,23 +48,36 @@ export default function PokeEvol(props) {
   }, [evolData]);
 
   if (!evolChain) {
-    return <></>;
+    return <div></div>;
   }
 
-  // const handlePicClick = (index) => {
-  //   history.push({
-  //     pathname: `/Pokemon/Details/${index}`,
-  //   });
-  // };
+  console.log(evolChain.length);
 
   return (
-    <Grid container>
+    <Grid container justifyContent="center">
       {evolChain.map((pokeStag, index) => (
-        <PokePic
-          key={index}
-          index={pokeStag.url.slice(-4).match(/[0-9]/g).join("")}
-          onPicClick={() => {}}
-        />
+        <React.Fragment>
+          <Grid item xs={2}>
+            <PokePic
+              key={index}
+              index={pokeStag.url.slice(-4).match(/[0-9]/g).join("")}
+            />
+          </Grid>
+          {index < evolChain.length - 1 && (
+            <Grid item xs={1}>
+              <Grid
+                container
+                justifyContent="center"
+                alignContent="center"
+                style={{ height: "100%", width: "100%" }}
+              >
+                <Grid item>
+                  <KeyboardArrowRightIcon />
+                </Grid>
+              </Grid>
+            </Grid>
+          )}
+        </React.Fragment>
       ))}
     </Grid>
   );

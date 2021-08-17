@@ -54,7 +54,7 @@ export default function PokeList() {
   }
 
   return (
-    <Grid container direction="row" style={{ height: "100%" }}>
+    <Grid container direction="row" style={{ height: "100%" }} spacing={0}>
       {pokemonList.map((pokemon) => (
         <Pokemon
           url={pokemon.url}

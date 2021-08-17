@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import axios from "axios";
-import {
-  Box,
-  Card,
-  Container,
-  Grid,
-  Typography,
-  CardMedia,
-  Paper,
-} from "@material-ui/core";
+import { Grid, Typography, Paper } from "@material-ui/core";
 import PokePic from "./PokePic";
 import PokeTypes from "./PokeTypes";
 import { useHistory } from "react-router";
@@ -58,8 +50,8 @@ const matchColor = (type) => {
       return "rgb(160, 64, 160,0.35)";
     case "psychic":
       return "rgb(248, 88, 136,0.35)";
-    case " rock":
-      return "rgb(184, 160, 56,0.35)";
+    case "rock":
+      return "rgb(184, 160, 56,0.5)";
     case "steel":
       return "rgb(184, 184, 208,0.35)";
     case "water":
@@ -78,7 +70,6 @@ export default function Pokemon(props) {
   const [right, setRight] = useState(null);
 
   const getColor = (types) => {
-    console.log(types);
     setLeft(matchColor(types[0].type.name));
     if (types.length === 2) {
       setRight(matchColor(types[1].type.name));
@@ -97,13 +88,6 @@ export default function Pokemon(props) {
     return <div>loading pokemon</div>;
   }
 
-  const handlePicClick = (index) => {
-    history.push({
-      pathname: `/Pokemon/Details/${index}`,
-      state: { url },
-    });
-  };
-
   let pokeName = capFirstLetter(pokeData.data.name);
 
   return (
@@ -111,28 +95,51 @@ export default function Pokemon(props) {
       <Paper
         elevation={2}
         style={{
-          background: `linear-gradient( to right, ${left}, ${right})`,
+          backgroundColor: "white",
+          position: "relative",
         }}
       >
-        <PokePic index={pokeData.data.id} onPicClick={handlePicClick}></PokePic>
-        <Typography
+        <Grid
           style={{
-            color: "grey",
-            fontSize: "13px",
-            fontWeight: "bold",
-            textAlign: "center",
+            width: "100%",
+            height: "100%",
+            borderRadius: "4px",
+            background: `linear-gradient( to right, ${left}, ${right})`,
           }}
         >
-          #{pokeData.data.id.toString().padStart(3, "0")}
-        </Typography>
-        <Typography variant="h5" align="center" style={{ marginBottom: "5px" }}>
-          {pokeName}
-        </Typography>
-        <PokeTypes
-          getColor={getColor}
-          types={pokeData.data.types}
-          onTypeClick={props.onTypeClick}
-        ></PokeTypes>
+          <Grid
+            style={{ position: "absolute", width: "100%", height: "100%" }}
+            alignContent="center"
+          >
+            <Typography
+              style={{
+                position: "relative",
+                color: "black", //rgb(255,255,255,0.6)
+                fontSize: "80px",
+                textAlign: "center",
+                transform: "scaleX(1.5)",
+                transform: "rotate(-45deg)",
+                top: "50px",
+              }}
+            >
+              #{pokeData.data.id.toString().padStart(3, "0")}
+            </Typography>
+          </Grid>
+
+          <PokePic index={pokeData.data.id}></PokePic>
+          <Typography
+            variant="h5"
+            align="center"
+            style={{ marginBottom: "5px" }}
+          >
+            {pokeName}
+          </Typography>
+          <PokeTypes
+            getColor={getColor}
+            types={pokeData.data.types}
+            onTypeClick={props.onTypeClick}
+          ></PokeTypes>
+        </Grid>
       </Paper>
     </Grid>
   );
