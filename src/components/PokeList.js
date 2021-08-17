@@ -4,9 +4,11 @@ import Pokemon from "./Pokemon/Pokemon";
 import axios from "axios";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useAppContext } from "../AppContext";
 
 export default function PokeList() {
   let totalPokemon = 100;
+  const { setCurrType, currType } = useAppContext();
   const [pokemonList, setPokemonList] = useState(null);
   const [typeUrl, setTypeUrl] = useState(null);
   const [url] = useState(
@@ -47,6 +49,7 @@ export default function PokeList() {
 
   function handleTypeClick(type) {
     setTypeUrl(`https://pokeapi.co/api/v2/type/${type}`);
+    setCurrType(type);
   }
 
   if (!pokemonList) {
