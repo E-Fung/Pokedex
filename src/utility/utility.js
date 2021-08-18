@@ -9,6 +9,8 @@ export const capFirstLetter = (name) => {
 
 export const matchColor = (type) => {
   switch (type) {
+    case "none":
+      return "white";
     case "fire":
       return "rgb(240, 128, 48,0.35)";
     case "grass":

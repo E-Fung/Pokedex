@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import PokeList from "./components/PokeList";
 import PokeDets from "./components/PokeDets";
 import { AppContextProvider } from "./AppContext";
-import Background from "./Background";
+import Background from "./components/Background";
 
 export default function App() {
   let myRange = [...Array(898).keys()].map((i) => i + 1);
@@ -28,44 +28,42 @@ export default function App() {
       <CssBaseline />
       <main>
         <AppContextProvider>
-          <Grid style={{ minHeight: "100%", minWidth: "100%" }}>
-            <Router>
-              {/* <AppBar
+          <Router>
+            <AppBar
               position="sticky"
               style={{
                 minWidth: "100%",
-                backgroundColor: "grey",
+                backgroundColor: "rgb(0,0,0,1)",
               }}
             >
               <Toolbar></Toolbar>
-            </AppBar> */}
-              <Container maxWidth="lg" fixed>
-                <Container
-                  maxWidth="md"
-                  fixed
-                  style={{
-                    backgroundColor: "rgb(0,0,0,0.8)",
-                    padding: "15px",
-                  }}
-                >
+            </AppBar>
+            <Container maxWidth="lg" fluid>
+              <Container
+                maxWidth="md"
+                fluid
+                style={{
+                  backgroundColor: "rgb(0,0,0,1)",
+                  padding: "15px",
+                }}
+              >
+                <Route
+                  path={"/"}
+                  exact
+                  onBackground={handleBackground}
+                  component={PokeList}
+                />
+                {myRange.map((index) => (
                   <Route
-                    path={"/"}
-                    exact
-                    onBackground={handleBackground}
-                    component={PokeList}
+                    path={`/Pokemon/Details/${index}`}
+                    key={index}
+                    component={PokeDets}
                   />
-                  {myRange.map((index) => (
-                    <Route
-                      path={`/Pokemon/Details/${index}`}
-                      key={index}
-                      component={PokeDets}
-                    />
-                  ))}
-                </Container>
+                ))}
               </Container>
-              <Background currType={currType} />
-            </Router>
-          </Grid>
+            </Container>
+            <Background />
+          </Router>
         </AppContextProvider>
       </main>
     </div>

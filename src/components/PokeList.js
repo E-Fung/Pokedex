@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 import { useAppContext } from "../AppContext";
 
 export default function PokeList() {
-  let totalPokemon = 100;
+  let totalPokemon = 10;
   const { setCurrType, currType } = useAppContext();
   const [pokemonList, setPokemonList] = useState(null);
   const [typeUrl, setTypeUrl] = useState(null);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
-import { matchColor } from "./utility/utility";
-import { useAppContext } from "./AppContext";
+import { matchColor } from "../utility/utility";
+import { useAppContext } from "../AppContext";
 
 export default function Background(props) {
   const { currType } = useAppContext();

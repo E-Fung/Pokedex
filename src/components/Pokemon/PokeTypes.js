@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import { Grid, makeStyles } from "@material-ui/core";
 
-//takes in an array of types
-
 const useStyles = makeStyles(() => ({
   fire: {
     backgroundColor: "rgb(240, 128, 48)",
@@ -12,10 +10,6 @@ const useStyles = makeStyles(() => ({
   grass: {
     backgroundColor: "rgb(120, 200, 80)",
     color: "black",
-  },
-  ground: {
-    backgroundColor: "rgb(224, 192, 104)",
-    color: "white",
   },
   bug: {
     backgroundColor: "rgb(168, 184, 32)",
@@ -31,7 +25,7 @@ const useStyles = makeStyles(() => ({
   },
   electric: {
     backgroundColor: "rgb(248, 208, 48)",
-    color: "white",
+    color: "black",
   },
   fairy: {
     backgroundColor: "rgb(238, 153, 172)",
@@ -49,9 +43,13 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "rgb(112, 88, 152)",
     color: "white",
   },
+  ground: {
+    backgroundColor: "rgb(224, 192, 104)",
+    color: "black",
+  },
   ice: {
     backgroundColor: "rgb(152, 216, 216)",
-    color: "white",
+    color: "black",
   },
   normal: {
     backgroundColor: "rgb(168, 168, 120)",
@@ -71,11 +69,18 @@ const useStyles = makeStyles(() => ({
   },
   steel: {
     backgroundColor: "rgb(184, 184, 208)",
-    color: "white",
+    color: "black",
   },
   water: {
     backgroundColor: "rgb(104, 144, 240)",
     color: "white",
+  },
+  bold: {
+    fontWeight: "bold",
+  },
+  typeButton: {
+    maxWidth: "80px",
+    maxHeight: "20px",
   },
 }));
 
@@ -88,7 +93,7 @@ export default function PokeTypes(props) {
   }, []);
 
   if (!types) {
-    return <div>loading type</div>;
+    return <div>loading type(s)</div>;
   }
 
   return (
@@ -98,9 +103,8 @@ export default function PokeTypes(props) {
           <Button
             key={index}
             variant="contained"
-            className={classes[type.type.name]}
+            className={`${classes[type.type.name]} ${classes.typeButton}`}
             onClick={() => props.onTypeClick(type.type.name)}
-            style={{ maxWidth: "80px", maxHeight: "20px" }}
           >
             {type.type.name}
           </Button>

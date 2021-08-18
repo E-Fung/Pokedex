@@ -7,6 +7,7 @@ import PokeTypes from "./PokeTypes";
 import { useHistory } from "react-router";
 import { capFirstLetter } from "../../utility/utility";
 import { matchColor } from "../../utility/utility";
+import IdBackground from "../IdBackground";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       margin: theme.spacing(1),
       height: theme.spacing(37),
+      width: theme.spacing(37),
     },
   },
 }));
@@ -65,7 +67,7 @@ export default function Pokemon(props) {
             background: `linear-gradient( to right, ${left}, ${right})`,
           }}
         >
-          <Grid
+          {/* <Grid
             style={{ position: "absolute", width: "100%", height: "100%" }}
             alignContent="center"
           >
@@ -82,8 +84,19 @@ export default function Pokemon(props) {
             >
               #{pokeData.data.id.toString().padStart(3, "0")}
             </Typography>
+          </Grid> */}
+          <Grid
+            style={{
+              width: "100%",
+              height: "100%",
+              position: "absolute",
+              paddingBottom: "40%",
+            }}
+          >
+            <IdBackground
+              id={` #${pokeData.data.id.toString().padStart(3, "0")}`}
+            />
           </Grid>
-
           <PokePic index={pokeData.data.id}></PokePic>
           <Typography
             variant="h5"
