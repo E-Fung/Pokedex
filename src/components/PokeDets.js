@@ -7,6 +7,7 @@ import { capFirstLetter } from "../utility/utility";
 import PokeStats from "./PokeDetails/PokeStats";
 import PokeEvol from "./PokeDetails/PokeEvol";
 import PokeMoves from "./PokeDetails/PokeMoves";
+import PokeTypes from "./Pokemon/PokeTypes";
 
 export default function PokeDets() {
   const location = useLocation();
@@ -35,12 +36,12 @@ export default function PokeDets() {
       <Typography variant="h5" align="center">
         {pokeName}
       </Typography>
-      <Grid xs={12}>
+      <Grid item xs={12}>
         <Container maxWidth="xs" fixed>
           <PokeStats pokeStats={pokeData.stats} />
         </Container>
       </Grid>
-      {/* <PokeMoves pokeMoves={pokeData.moves} /> */}
+      <PokeMoves pokeMoves={pokeData.moves} />
       <PokeEvol url={pokeData.species.url} />
     </Grid>
   );

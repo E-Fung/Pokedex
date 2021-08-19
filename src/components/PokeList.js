@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Pokemon from "./Pokemon/Pokemon";
 import axios from "axios";
 import AOS from "aos";
@@ -7,8 +7,8 @@ import "aos/dist/aos.css";
 import { useAppContext } from "../AppContext";
 
 export default function PokeList() {
-  let totalPokemon = 10;
-  const { setCurrType, currType } = useAppContext();
+  let totalPokemon = 50;
+  const { setCurrType } = useAppContext();
   const [pokemonList, setPokemonList] = useState(null);
   const [typeUrl, setTypeUrl] = useState(null);
   const [url] = useState(
@@ -38,14 +38,6 @@ export default function PokeList() {
       setPokemonList(tempList);
     });
   }, [typeUrl, totalPokemon]);
-
-  // async function handlePicClick(index) {
-  //   console.log(index);
-  //   history.push({
-  //     pathname: "/pokemon",
-  //     state: { name: displayList[index - 1].data },
-  //   });
-  // }
 
   function handleTypeClick(type) {
     setTypeUrl(`https://pokeapi.co/api/v2/type/${type}`);

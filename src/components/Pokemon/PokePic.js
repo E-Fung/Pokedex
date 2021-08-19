@@ -1,10 +1,16 @@
 import { Grid } from "@material-ui/core";
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  picture: { height: "100%", width: "100%", zIndex: "2" },
+});
 
 export default function PokePic(props) {
   const [url] = useState(`https://pokeapi.co/api/v2/pokemon/${props.index}`);
   const history = useHistory();
+  const classes = useStyles();
 
   const handlePicClick = () => {
     history.push({
@@ -24,11 +30,7 @@ export default function PokePic(props) {
         src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${altIndex}.png`}
         alt="Pokemon Img"
         onClick={() => handlePicClick()}
-        style={{
-          height: "100%",
-          width: "100%",
-          zIndex: "2",
-        }}
+        className={classes.picture}
       ></img>
     </Grid>
   );

@@ -1,10 +1,16 @@
 export const capFirstLetter = (name) => {
-  return name
+  let result = name
     .split(" ")
     .map((word) => {
       return word[0].toUpperCase() + word.substring(1);
     })
-    .join("");
+    .join(" ");
+  return result
+    .split("-")
+    .map((word) => {
+      return word[0].toUpperCase() + word.substring(1);
+    })
+    .join("-");
 };
 
 export const matchColor = (type) => {

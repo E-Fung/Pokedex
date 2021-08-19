@@ -1,27 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
-import {
-  AppBar,
-  Toolbar,
-  CssBaseline,
-  Grid,
-  Container,
-} from "@material-ui/core";
+import { AppBar, Toolbar, CssBaseline, Container } from "@material-ui/core";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import PokeList from "./components/PokeList";
 import PokeDets from "./components/PokeDets";
 import { AppContextProvider } from "./AppContext";
 import Background from "./components/Background";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles(() => ({
+  appbar: {
+    minWidth: "100%",
+  },
+  container: {
+    backgroundColor: "white",
+    padding: "15px",
+    borderEndEndRadius: "10px",
+    borderEndStartRadius: "10px",
+  },
+}));
 
 export default function App() {
   let myRange = [...Array(898).keys()].map((i) => i + 1);
-  const [currType, setCurrType] = useState("none");
+  const [setCurrType] = useState("none");
+  const classes = useStyles();
 
   const handleBackground = (type) => {
     setCurrType(type);
   };
-
-  console.log(currType);
 
   return (
     <div className="app" direction="column">
@@ -29,24 +35,11 @@ export default function App() {
       <main>
         <AppContextProvider>
           <Router>
-            <AppBar
-              position="sticky"
-              style={{
-                minWidth: "100%",
-                backgroundColor: "rgb(0,0,0,1)",
-              }}
-            >
+            <AppBar position="sticky" className={classes.appbar}>
               <Toolbar></Toolbar>
             </AppBar>
-            <Container maxWidth="lg" fluid>
-              <Container
-                maxWidth="md"
-                fluid
-                style={{
-                  backgroundColor: "rgb(0,0,0,1)",
-                  padding: "15px",
-                }}
-              >
+            <Container maxWidth="lg">
+              <Container maxWidth="md" className={classes.container}>
                 <Route
                   path={"/"}
                   exact
