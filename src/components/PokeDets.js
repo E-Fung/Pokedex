@@ -25,6 +25,7 @@ export default function PokeDets() {
   }
 
   let pokeName = capFirstLetter(pokeData.name);
+  console.log(pokeData);
 
   return (
     <Grid container justifyContent="center">

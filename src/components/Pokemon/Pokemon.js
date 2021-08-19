@@ -8,6 +8,7 @@ import { capFirstLetter } from "../../utility/utility";
 import { matchColor } from "../../utility/utility";
 import IdBackground from "../IdBackground";
 import { Grow } from "@material-ui/core";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,9 +23,19 @@ const useStyles = makeStyles((theme) => ({
   card: {
     backgroundColor: "white",
     position: "relative",
-    "&:hover": {
-      Animation: "bounce",
-      AnimationEffect: "bounce",
+  },
+  pokeBounce: {
+    animation: `$bounce 300ms ${theme.transitions.easing.easeInOut}`,
+  },
+  "@keyframes bounce": {
+    "0%": {
+      transform: "translateY(0%)",
+    },
+    "50%": {
+      transform: "translateY(-1%)",
+    },
+    "100%": {
+      transform: "translateY(0%)",
     },
   },
   gradient: {
@@ -46,6 +57,7 @@ export default function Pokemon(props) {
   const classes = useStyles();
   const [left, setLeft] = useState(null);
   const [right, setRight] = useState(null);
+  const [hover, setHover] = useState(false);
 
   const getColor = (types) => {
     setLeft(matchColor(types[0].type.name));
@@ -71,7 +83,15 @@ export default function Pokemon(props) {
   return (
     <Grid item xs={3} className={classes.root}>
       <Grow in={true}>
-        <Paper elevation={2} className={classes.card}>
+        <Paper
+          elevation={2}
+          className={clsx({
+            [classes.card]: true,
+            [classes.pokeBounce]: hover,
+          })}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
           <Grid
             className={classes.gradient}
             style={{
