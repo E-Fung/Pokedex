@@ -2,7 +2,7 @@ export const generateTexture = (text) => {
   // Set variables
   const bitmapShift = 10;
   const copyAmount = 2;
-  const canvasSize = 108.25; //size of each picture which will then be repeated
+  const canvasSize = 105; //size of each picture which will then be repeated
   const fontSize = canvasSize / copyAmount;
   const fontStyle = `Bold ${fontSize}px Arial`;
 

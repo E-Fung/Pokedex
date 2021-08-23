@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import { Grid, makeStyles } from "@material-ui/core";
+import { capFirstLetter } from "../../utility/utility";
 
 const useStyles = makeStyles(() => ({
   fire: {
@@ -81,6 +82,7 @@ const useStyles = makeStyles(() => ({
   typeButton: {
     maxWidth: "80px",
     maxHeight: "20px",
+    textTransform: "none",
   },
 }));
 
@@ -106,7 +108,7 @@ export default function PokeTypes(props) {
             className={`${classes[type.type.name]} ${classes.typeButton}`}
             onClick={() => props.onTypeClick(type.type.name)}
           >
-            {type.type.name}
+            {capFirstLetter(type.type.name)}
           </Button>
         );
       })}

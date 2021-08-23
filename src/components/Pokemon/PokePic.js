@@ -27,7 +27,7 @@ export default function PokePic(props) {
   return (
     <Grid container justifyContent="center">
       <img
-        src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${altIndex}.png`}
+        src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${altIndex}.png`}
         alt="Pokemon Img"
         onClick={() => handlePicClick()}
         className={classes.picture}

@@ -1,6 +1,7 @@
 import { Grid, Typography, LinearProgress } from "@material-ui/core";
 import React from "react";
 import { useState, useEffect } from "react";
+import { capFirstLetter } from "../../utility/utility";
 
 export default function PokeStats(props) {
   const [pokeStats] = useState(props.pokeStats);
@@ -11,8 +12,8 @@ export default function PokeStats(props) {
     <Grid container justifyContent="center">
       {pokeStats.map((stat, index) => (
         <Grid item key={index + 2000} xs={12}>
-          <Typography key={index}>
-            {stat.stat.name} {stat.base_stat}
+          <Typography key={index} style={{ color: "white" }}>
+            {capFirstLetter(stat.stat.name)} {stat.base_stat}
           </Typography>
           <LinearProgress
             key={index + 1000}

@@ -50,8 +50,6 @@ export default function PokeEvol(props) {
     return <div></div>;
   }
 
-  console.log(evolChain);
-
   return (
     <Grid container justifyContent="center">
       {evolChain.map((pokeStag, index) => (

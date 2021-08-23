@@ -7,8 +7,8 @@ import "aos/dist/aos.css";
 import { useAppContext } from "../AppContext";
 
 export default function PokeList() {
-  let totalPokemon = 50;
-  const { setCurrType } = useAppContext();
+  let totalPokemon = 12;
+  const { currType, setCurrType } = useAppContext();
   const [pokemonList, setPokemonList] = useState(null);
   const [typeUrl, setTypeUrl] = useState(null);
   const [url] = useState(
@@ -38,6 +38,14 @@ export default function PokeList() {
       setPokemonList(tempList);
     });
   }, [typeUrl, totalPokemon]);
+
+  useEffect(() => {
+    if (currType === "none") {
+      axios.get(url).then((data) => {
+        setPokemonList(data.data.results);
+      });
+    }
+  }, [currType]);
 
   function handleTypeClick(type) {
     setTypeUrl(`https://pokeapi.co/api/v2/type/${type}`);
